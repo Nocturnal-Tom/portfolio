@@ -9,6 +9,7 @@ import { PaperBackgroundComponent } from './paper-background/paper-background.co
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProjectsComponent } from './projects/projects.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProjectsComponent } from './projects/projects.component';
     PaperBackgroundComponent,
     AboutComponent,
     ContactComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

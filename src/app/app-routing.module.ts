@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { generateRoute, RouteInfo } from "./navigation-data"
+import { RouteInfo } from "./routing-info"
 import { AppComponent } from './app.component';
 import { AboutComponent } from "./about/about.component";
 import { ContactComponent } from "./contact/contact.component";
 import { ProjectsComponent } from "./projects/projects.component";
 
-const routes: Routes = [];
+const routes: Array<RouteInfo> = [
+  {pathName: "", path: "", component: AppComponent},
+  {pathName: "About Me", path: "/about", component: AboutComponent},
+  {pathName: "My Projects", path: "/projects", component: ProjectsComponent},
+  {pathName: "Contact Me", path: "/contact", component: ContactComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  navigation_data: Array<NavigationData> = [
-    new NavigationData("", " ", AppComponent),
-    new NavigationData("About Me", "/about", AboutComponent),
-    new NavigationData("My Projects", "/projects", ProjectsComponent),
-    new NavigationData("Contact Me", "/contact", ContactComponent)
-  ];
-
  }
