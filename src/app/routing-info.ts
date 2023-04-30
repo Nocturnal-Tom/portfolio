@@ -1,31 +1,9 @@
-import { AppComponent } from "./app.component";
-import { AboutComponent } from "./about/about.component";
-import { ContactComponent } from "./contact/contact.component";
-import { ProjectsComponent } from "./projects/projects.component";
-import { NavigationData } from "./navigation-data"
+import { Component, Type } from "@angular/core"
+import { Route } from "@angular/router";
 
-export class RoutingInfo {
-    private static instance: RoutingInfo;
+// The entire purpose of this interface is to allow us to determine what name to give links that route to different components
 
-    routeInfo = [
-        new NavigationData("", " ", AppComponent),
-        new NavigationData("About Me", "/about", AboutComponent),
-        new NavigationData("My Projects", "/projects", ProjectsComponent),
-        new NavigationData("Contact Me", "/contact", ContactComponent)
-    ]
-
-
-    private constructor(){}
-    
-
-    public static getInstance(): RoutingInfo{
-        if (!RoutingInfo.instance){
-            RoutingInfo.instance = new RoutingInfo();
-        }
-        return RoutingInfo.instance;
-    }
-
-    public static getNames(): string[]{
-        return ["", ""];
-    }
+interface RoutingInfo extends Route {
+    pathName: string;
 }
+
