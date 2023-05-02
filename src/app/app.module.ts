@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Route, Routes, RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { MainPageComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarItemComponent } from './navbar-item/navbar-item.component';
 import { PaperBackgroundComponent } from './paper-background/paper-background.component';
@@ -15,7 +15,7 @@ import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    MainPageComponent,
     NavbarComponent,
     NavbarItemComponent,
     PaperBackgroundComponent,
@@ -29,7 +29,7 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [MainPageComponent]
 })
 export class MainPageModule {
 
