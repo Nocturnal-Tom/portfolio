@@ -5,5 +5,6 @@ import { Route } from "@angular/router";
 
 export interface RouteInfo extends Route {
     pathName: string;   // The text in <a> should be this string
+    routeType: "Main Page" | "Other";
 }
 
