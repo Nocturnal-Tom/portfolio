@@ -7,10 +7,10 @@ import { MainPageComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarItemComponent } from './navbar-item/navbar-item.component';
 import { PaperBackgroundComponent } from './paper-background/paper-background.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './main-pages/about/about.component';
+import { ContactComponent } from './main-pages/contact/contact.component';
+import { ProjectsComponent } from './main-pages/projects/projects.component';
+import { HomeComponent } from './main-pages/home/home.component';
 
 
 @NgModule({
