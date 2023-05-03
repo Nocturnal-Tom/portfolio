@@ -1,3 +1,3 @@
-<ng-container ngFor="let page of pages">
-    <app-navbar-item ></app-navbar-item>
+<ng-container *ngFor="let page of mainPages">
+    <app-navbar-item [pageRouteName]="page.path" [pageName]="page.pathName" ></app-navbar-item>
 </ng-container>

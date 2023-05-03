@@ -5,9 +5,11 @@ import { MainPageComponent } from './app.component';
 import { AboutComponent } from "./about/about.component";
 import { ContactComponent } from "./contact/contact.component";
 import { ProjectsComponent } from "./projects/projects.component";
+import { HomeComponent } from './home/home.component';
 
 const mainPageRoutes: Array<Route> = [
-  {pathName: "", path: "", component: MainPageComponent, routeType: "Main Page"},
+  {pathName: "Home", path: "", component: HomeComponent, routeType: "Main Page"},
+  {pathName: "Home", path: "home", component: HomeComponent, routeType: "Main Page"},
   {pathName: "About Me", path: "about", component: AboutComponent, routeType: "Main Page"},
   {pathName: "My Projects", path: "projects", component: ProjectsComponent, routeType: "Main Page"},
   {pathName: "Contact Me", path: "contact", component: ContactComponent, routeType: "Main Page"}
@@ -22,16 +24,4 @@ const subRoute: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {
-  constructor(private router: Router){
-    router.config.forEach((route: Route) => {
-      // Simple way to determine if the route implements the RouteInfo interface
-      let routeInfoPropertyKey: string = "routeType"  // To make it more readable/understandable
-      if (route.hasOwnProperty(routeInfoPropertyKey)) {
-        console.log("Main page route: ", route)
-      }
-      else {
-        console.log("Not a main page route: ", route)
-      }
-    });
-  }
  }
