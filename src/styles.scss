@@ -1,7 +1,15 @@
+$background-color: #1f1f1f;
+$text-color: #ffffff;
+$button-background-color: #3c3c3c;
+
+$accent-color-1: #ff6347;
+$accent-color-2: #6edbd2;
+
+
 /* You can add global styles to this file, and also import other style files */
 html, body, #mainPage {
-    background-color: #222222;
-    color: white;
+    background-color: transparent;
+    color: $text-color;
     height: 100vh;
     width: 100%;
     padding: 0;
@@ -9,14 +17,15 @@ html, body, #mainPage {
 }
 
 
-
 * {
-    color: #FFFFFF;
-    background-color: #121212;
-    &:visited {
-        color: #B3B3B3;
-    }
+    color: $text-color;
+    background-color: transparent;
 }
+
+a:any-link {
+    color: $accent-color-1;
+}
+
 
 button {
     border-style: groove;

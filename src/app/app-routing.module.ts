@@ -8,14 +8,17 @@ import { ProjectsComponent } from "./main-pages/projects/projects.component";
 import { ProjectPortfolioComponent } from './main-pages/projects/project-portfolio/project-portfolio.component';
 import { PrimaryLayoutComponent } from './primary-layout/primary-layout.component';
 
-const mainPageRoutes: Array<RouteInfo> = [{
-  path: "",
+
+
+
+
+const routes: Array<RouteInfo> = [{
   pathName: "",
-  routeType: "Main Page",
+  path: "",
+  routeType: "Layout",
   component: PrimaryLayoutComponent,
   children: [
     {pathName: "Home", path: "", component: HomeComponent, routeType: "Main Page"},
-    {pathName: "Home", path: "home", component: HomeComponent, routeType: "Main Page"},
     {pathName: "About Me", path: "about", component: AboutComponent, routeType: "Main Page"},
     {pathName: "My Projects", path: "projects", component: ProjectsComponent, routeType: "Main Page", children: [
       {pathName: "My Angular site", path: "portfolio", component: ProjectPortfolioComponent, routeType: "Project"}
@@ -26,8 +29,9 @@ const mainPageRoutes: Array<RouteInfo> = [{
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(mainPageRoutes)],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
- }
+
+}

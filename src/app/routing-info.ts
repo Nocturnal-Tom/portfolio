@@ -5,7 +5,7 @@ import { Route, Routes } from "@angular/router";
 
 
 
-type RouteType = "Main Page" | "Project" | "Layour" | "Other"
+type RouteType = "Main Page" | "Project" | "Layout" | "Other"
 
 // The entire purpose of this interface is to allow us to determine what name to give links that route to different components
 export interface RouteInfo extends Route {
@@ -47,8 +47,17 @@ export function filterRouteInfoByType(routes: Routes, routeType: RouteType): Rou
 }
 
 export function filterOnlyUniqueRoutes(routes: Routes): Routes{
+    routes = Object.assign({}, routes)
     return routes
 }
 
 
+class TestClass{
 
+}
+
+function test(ty: TestClass){
+    
+}
+
+test(TestClass)

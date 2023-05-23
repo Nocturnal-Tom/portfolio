@@ -12,10 +12,14 @@ export class NavbarComponent {
   
   
   constructor(private router: Router) {
-    let routes = router.config
-    let allRoutes: Routes = extractAllRoutes(routes)
-    console.log("allRoutes length: ", allRoutes.length)
-    this.mainPages = filterRouteInfoByType(allRoutes, "Main Page") // We need to cast here since we know this function can only return an Array<RouteInfo>
-    console.log("Main pages length: ", this.mainPages.length)
+    let routes = router.config;
+    let allRoutes: Routes = extractAllRoutes(routes);
+    console.log("allRoutes length: ", allRoutes);
+    this.mainPages = filterRouteInfoByType(allRoutes, "Main Page"); // We need to cast here since we know this function can only return an Array<RouteInfo>
+    let uniquePages: Array<RouteInfo>;
+    this.mainPages.forEach((routeInfo: RouteInfo) => {
+
+    })
+    console.log("Main pages length: ", this.mainPages.length);
   }
 }

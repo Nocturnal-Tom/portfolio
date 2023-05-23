@@ -13,6 +13,7 @@ import { ProjectsComponent } from './main-pages/projects/projects.component';
 import { HomeComponent } from './main-pages/home/home.component';
 import { ProjectPortfolioComponent } from './main-pages/projects/project-portfolio/project-portfolio.component';
 import { PrimaryLayoutComponent } from './primary-layout/primary-layout.component';
+import { BackgroundComponent } from './background/background.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PrimaryLayoutComponent } from './primary-layout/primary-layout.componen
     ProjectsComponent,
     HomeComponent,
     ProjectPortfolioComponent,
-    PrimaryLayoutComponent
+    PrimaryLayoutComponent,
+    BackgroundComponent
   ],
   imports: [
     BrowserModule,
