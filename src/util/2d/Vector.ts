@@ -1,6 +1,6 @@
 
 
-export class Vector2{
+export class Vector2 {
     x: number;
     y: number;
     
@@ -9,19 +9,61 @@ export class Vector2{
         this.y = y;
     }
 
+    static random(x = 1.0, y = 1.0): Vector2 {
+        const newX = (Math.random() - 0.5) * 2 * x;
+        const newY = (Math.random() - 0.5) * 2 * y;
+        return new Vector2(newX, newY);
+    }
+
+    static zero(): Vector2 {
+        return new Vector2(0, 0);
+    }
+
+    static one(): Vector2 {
+        return new Vector2(1, 1);
+    }
+
+    static up(): Vector2 {
+        return new Vector2(0, 1);
+    }
+
+    static down(): Vector2 {
+        return new Vector2(0, -1);
+    }
+
+    static left(): Vector2 {
+        return new Vector2(-1, 0);
+    }
+
+    static right(): Vector2 {
+        return new Vector2(1, 0);
+    }
+
+    static inf(): Vector2{
+        return new Vector2(Infinity, Infinity);
+    }
+
     translate(to: Vector2): void {
         this.x += to.x;
         this.y += to.y;
     }
 
+    translated(to: Vector2): Vector2 {
+        return new Vector2(
+            this.x + to.x,
+            this.y + to.y
+        )
+    }
+
+
     normalized(): Vector2 {
-        let vec: Vector2 = {...this};
-        let mag: number = vec.magnitude();
+        const vec: Vector2 = this.copy();
+        const mag: number = vec.magnitude();
         return vec.divide(mag);
     }
 
     divide(by: Vector2 | number): Vector2 {
-        let vec: Vector2 = {...this};
+        const vec: Vector2 = this.copy();
         if (typeof(by) == "number"){
             vec.x /= by;
             vec.y /= by;
@@ -34,7 +76,7 @@ export class Vector2{
     }
 
     multiply(by: Vector2 | number): Vector2 {
-        let vec: Vector2 = {...this};
+        const vec: Vector2 = this.copy();
         if (typeof(by) == "number"){
             vec.x *= by;
             vec.y *= by;
@@ -47,7 +89,43 @@ export class Vector2{
     }
 
     magnitude(): number {
-        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+        return Math.sqrt(this.x*this.x + this.y*this.y);
+    }
+
+    inverted(): Vector2 {
+        return new Vector2(-this.x, -this.y);
+    }
+
+    distanceTo(to: Vector2): number {
+        return Math.abs(this.translated(to.inverted()).magnitude())
+    }
+
+    directionTo(to: Vector2): Vector2 {
+        return this.translated(to.inverted()).normalized();
+    }
+
+    
+    clamped(maxMag: number): Vector2 {
+        const vec = this.copy();
+        if (vec.magnitude() < maxMag){
+            return vec;
+        }
+        return this.copy().normalized().multiply(maxMag);
+    }
+    
+    rotated(rads: number): Vector2 {
+        const vec = this.copy();
+        return vec;
+    }
+    
+    copy(): Vector2 {
+        return new Vector2(this.x, this.y);
+    }
+    
+    static copyVector2Array(vecs: Array<Vector2>): Array<Vector2> {
+        return vecs.map((vec) => {
+            return vec.copy();
+        })
     }
 
 }

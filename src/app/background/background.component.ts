@@ -1,80 +1,130 @@
-import { Component } from '@angular/core';
-import { throwError } from 'rxjs';
-import { Grid } from 'src/util/2d/grid';
+import { Component, ContentChild, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Vector2 } from 'src/util/2d/vector';
+import { GridFloatingCells } from 'src/util/2d/grid-floating-cells';
+import { DrawingContext } from 'src/util/2d/draw';
+
 
 @Component({
   selector: 'app-background',
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.scss']
 })
-export class BackgroundComponent {
-  private canvasElement: HTMLCanvasElement | null = null;
-  public ctx: CanvasRenderingContext2D | null = null;
-  private shouldDraw = true;
-  private grid: Grid | null = null; // I don't want to use null, so this is a placeholder
+export class BackgroundComponent implements AfterViewInit {
+  public shouldDraw = true;
+  public shouldDrawCircles = false;
+  private lastTime = 0;
+  private distanceThresh = 190;
+  private cellMaxSpeed = 100;
 
+  // These properties are set in ngAfterViewInit(), so they are guarenteed to exist (as long as I'm not missing anything?)
+  private canvasElement!: HTMLCanvasElement;
+  private grid!: GridFloatingCells;
+  private drawingCtx!: DrawingContext;
+  @ViewChild("backgroundCanvas") canv!: ElementRef;
 
+  constructor(private elRef: ElementRef){
+    console.log("Constructor", elRef);
+  }
 
   ngAfterViewInit(){
+    console.log("ngAfterViewinit", this.canv);
+    console.log(this.canv.nativeElement as HTMLCanvasElement);
+    // We want to capture mouse movement to move cells away from mouse if it comes too close
+    self.addEventListener("mousemove", (ev: MouseEvent) => this.onMouseMove(new Vector2(ev.x, ev.y)));
+    self.addEventListener("touchmove", (ev: TouchEvent) => this.onMouseMove(new Vector2(ev.touches[0].clientX, ev.touches[0].clientY)));
+
     // I've seen people prefer to get elements "the angular way", but it seems weird and complicated, this way is simple, but later requires us to dance around typescript
     const canvas_temp = document.getElementById("background-canvas");
 
-    console.log("canvas_temp: ", canvas_temp);
-    if (!(canvas_temp instanceof HTMLCanvasElement)){
-      // We should never reach here unless something very bad happened
+    if (!canvas_temp || !(canvas_temp instanceof HTMLCanvasElement)){
       throw new Error("Error: Cannot find canvas with ID background-canvas");  
     }
-    else {
-      this.canvasElement = canvas_temp;
-    }
-
-    const ctx_temp = this.canvasElement.getContext("2d");
-    if (!(ctx_temp instanceof CanvasRenderingContext2D)){
-      // We should never reach here either
-      throw new Error("Error: background-canvas has no 2D context");
-    }
-    else {
-      this.ctx = ctx_temp;
-    }
-
-    this.grid = new Grid(1,1,"grid", 100, 100);
-    
-    // Phew, now we 100% have a canvas conxtext 2d...
-
-    requestAnimationFrame(this.render.bind(this));
-  }
-
-  render(time: DOMHighResTimeStamp): void {
-    if (!(this.ctx instanceof CanvasRenderingContext2D && this.canvasElement instanceof HTMLCanvasElement)){
-      throw new Error("Canvas context is missing");
-    }
+    this.canvasElement = canvas_temp;
 
     // Required to ensure the canvas is the correct resolution every frame
     this.canvasElement.width = window.innerWidth;
     this.canvasElement.height = window.innerHeight;
-    // We must always make sure the canvas is cleared
-    this.ctx.clearRect(0, 0, this.canvasElement.width, this.canvasElement.height);
-  
-    // Simple gradient background
-    this.draw_gradient_circle();
 
-    requestAnimationFrame(this.render.bind(this));
+    const smallestDim = Math.min(this.canvasElement.width, this.canvasElement.height);
+    // We want the distance threshold to be relative to screen size (larger screens should have larger thresholds)
+    this.distanceThresh = smallestDim / 4;
+    this.cellMaxSpeed = smallestDim / 2000;
+
+    this.drawingCtx = new DrawingContext(this.canvasElement);
+
+    this.grid = new GridFloatingCells(8, 8, "grid", this.canvasElement.width, this.canvasElement.height);
+    const cell_dim = this.grid.getCellDimensions();
+    this.grid.getCells().forEach((v, i) => {
+      const x = (Math.random() - 0.5) * cell_dim.width;
+      const y = (Math.random() - 0.5) * cell_dim.height;
+      const vec2 = new Vector2(x, y);
+      this.grid?.setOffsetIndividual(i, vec2);
+    });
+
+    this.grid.setCellSpeed(this.cellMaxSpeed);
+
+    requestAnimationFrame((time) => this.render(time));
   }
+  
+  private render(time: DOMHighResTimeStamp): void {
+    // Required to ensure the canvas is the correct resolution every frame
+    this.canvasElement.width = window.innerWidth;
+    this.canvasElement.height = window.innerHeight;
 
-  draw_gradient_circle() {
-    if (!this.canvasElement || !this.ctx) {
-      throw new Error("Canvas context is missing");
+
+    this.drawingCtx.clear();
+
+    if (this.shouldDraw){
+      const circleX = (Math.sin(Date.now() / 2000) + 1.0) / 2.0 * this.canvasElement.width;
+
+      // The background gradient
+      this.drawingCtx.drawRadialGradient(new Vector2(circleX, 0), 0, new Vector2(circleX, 0), this.canvasElement.height * 1.7);
+      this.draw_grid_centers(time);
     }
 
-    const circleX = this.canvasElement.width / 2.0
-    this.ctx.strokeStyle = this.ctx.createRadialGradient(
-      circleX, 0, 0,
-      circleX, 0, this.canvasElement.height * 1.7 // Fills gradient to corners. Number chosen from vague memory of circles at 45 deg being something like 0.707 or something
-    );
-    this.ctx.strokeStyle.addColorStop(0, "#1f1f1f");
-    this.ctx.strokeStyle.addColorStop(1, "#000");
+    // Google says using arrow function is the same as "this.render.bind(this)"
+    requestAnimationFrame((time: DOMHighResTimeStamp) => this.render(time));
 
-    this.ctx.fillStyle = this.ctx.strokeStyle;
-    this.ctx.fillRect(0, 0, this.canvasElement.width, this.canvasElement.height);
+    this.lastTime = time;
+  }
+
+  private draw_grid_centers(time: DOMHighResTimeStamp) {
+    this.grid.updateCellPositions(time - this.lastTime);
+    
+    for (let i = 0; i < this.grid.getCellCount(); i++){
+      let closestPoint = Infinity;
+      const iCell = this.grid.getCell(i); 
+      for (let j = i+1; j < this.grid.getCellCount(); j++){
+        const jCell = this.grid.getCell(j);
+        const dist = iCell.distanceTo(jCell);
+        
+        if (dist < this.distanceThresh){
+          const dist_percentage = dist / this.distanceThresh;
+          const color = `rgba(255, 255, 255, ${1.0-dist_percentage})`;
+          this.drawingCtx.drawLine(iCell, jCell, color, 2.0);
+          closestPoint = dist_percentage < closestPoint ? dist_percentage : closestPoint;
+        }
+      }
+      
+      if (this.shouldDrawCircles){
+        const color = `rgba(255, 255, 255, ${Math.max(1.0-closestPoint, 0.5)})`;
+        this.drawingCtx.drawCircle(iCell, 2, color, 1);
+      }
+    }
+  }
+
+
+  private onMouseMove(position: Vector2){
+    console.log("Mouse moved!");
+    const maxDist = 50;
+    for (let i = 0; i < this.grid.getCellCount(); i++){
+      const dist = this.grid.getCell(i).distanceTo(position);
+      if (dist < maxDist){
+        const closeness = 1.0-dist/maxDist;
+        this.grid.setCellVelocity(i, this.grid.getCell(i).directionTo(position).multiply(closeness * 100.0));
+      }
+    }
+    
+    console.log("canv is: ", this.canv);
   }
 }
