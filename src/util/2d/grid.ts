@@ -3,13 +3,6 @@ import { Vector2 } from "./vector";
 
 export type DimensionType = "cell" | "grid";
 
-export interface UniformGrid {
-
-}
-
-export interface NonUniformGrid {
-
-}
 
 export class Grid {
     private columns: number;
@@ -34,13 +27,7 @@ export class Grid {
         this.generateGrid();
     }
 
-    // We have a public version of this because I think it's likely in the future we may want to have different logic if the user regenerates the grid.
-    // It's likely we can do it more efficiently.
-    public regenerate(): void {
-        this.generateGrid();
-    }
-
-    private generateGrid(): void {
+    public generateGrid(): void {
         this.cells.length = this.columns*this.rows;
 
         for (let i = 0; i < this.columns*this.rows; i++) {
@@ -118,7 +105,7 @@ export class Grid {
         this.dimensionType = dimensionType;
         this.width = width;
         this.height = height;
-        this.regenerate();
+        this.generateGrid();
     }
 
     public setOffset(by: Vector2){

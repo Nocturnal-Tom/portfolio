@@ -1,8 +1,8 @@
 
 
 export class Vector2 {
-    x: number;
-    y: number;
+    public x: number;
+    public y: number;
     
     constructor(x: number, y: number){
         this.x = x;
@@ -115,13 +115,15 @@ export class Vector2 {
     
     rotated(rads: number): Vector2 {
         const vec = this.copy();
+        vec.x = Math.cos(vec.x) - Math.sin(vec.y);
+        vec.y = Math.sin(vec.x) + Math.cos(vec.y);
         return vec;
     }
     
     copy(): Vector2 {
         return new Vector2(this.x, this.y);
     }
-    
+
     static copyVector2Array(vecs: Array<Vector2>): Array<Vector2> {
         return vecs.map((vec) => {
             return vec.copy();

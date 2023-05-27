@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ContentChild, ElementRef, ViewChild, AfterViewInit, ViewContainerRef, Renderer2 } from '@angular/core';
 import { Vector2 } from 'src/util/2d/vector';
 import { GridFloatingCells } from 'src/util/2d/grid-floating-cells';
 import { DrawingContext } from 'src/util/2d/draw';
@@ -9,37 +9,31 @@ import { DrawingContext } from 'src/util/2d/draw';
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.scss']
 })
-export class BackgroundComponent implements AfterViewInit {
+export class BackgroundComponent {
   public shouldDraw = true;
   public shouldDrawCircles = false;
   private lastTime = 0;
   private distanceThresh = 190;
-  private cellMaxSpeed = 100;
+  private cellMaxSpeed = 0.5;
+  private minDist = 100;
 
   // These properties are set in ngAfterViewInit(), so they are guarenteed to exist (as long as I'm not missing anything?)
   private canvasElement!: HTMLCanvasElement;
   private grid!: GridFloatingCells;
   private drawingCtx!: DrawingContext;
-  @ViewChild("backgroundCanvas") canv!: ElementRef;
+  @ViewChild("backgroundCanvas", {read: ElementRef<HTMLCanvasElement>}) canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  constructor(private elRef: ElementRef){
-    console.log("Constructor", elRef);
-  }
+  constructor(private element: ElementRef<HTMLElement>, private renderer: Renderer2){}
 
   ngAfterViewInit(){
-    console.log("ngAfterViewinit", this.canv);
-    console.log(this.canv.nativeElement as HTMLCanvasElement);
     // We want to capture mouse movement to move cells away from mouse if it comes too close
-    self.addEventListener("mousemove", (ev: MouseEvent) => this.onMouseMove(new Vector2(ev.x, ev.y)));
+    self.addEventListener("mousemove", (ev: MouseEvent) => this.onMouseMove(new Vector2(ev.clientX, ev.clientY)));
     self.addEventListener("touchmove", (ev: TouchEvent) => this.onMouseMove(new Vector2(ev.touches[0].clientX, ev.touches[0].clientY)));
-
-    // I've seen people prefer to get elements "the angular way", but it seems weird and complicated, this way is simple, but later requires us to dance around typescript
-    const canvas_temp = document.getElementById("background-canvas");
-
-    if (!canvas_temp || !(canvas_temp instanceof HTMLCanvasElement)){
+    
+    if (!this.canvasRef.nativeElement){
       throw new Error("Error: Cannot find canvas with ID background-canvas");  
     }
-    this.canvasElement = canvas_temp;
+    this.canvasElement = this.canvasRef.nativeElement;
 
     // Required to ensure the canvas is the correct resolution every frame
     this.canvasElement.width = window.innerWidth;
@@ -48,11 +42,13 @@ export class BackgroundComponent implements AfterViewInit {
     const smallestDim = Math.min(this.canvasElement.width, this.canvasElement.height);
     // We want the distance threshold to be relative to screen size (larger screens should have larger thresholds)
     this.distanceThresh = smallestDim / 4;
-    this.cellMaxSpeed = smallestDim / 2000;
+    this.cellMaxSpeed = smallestDim / 2000; //Math.log10(smallestDim) / 20;
 
     this.drawingCtx = new DrawingContext(this.canvasElement);
 
     this.grid = new GridFloatingCells(8, 8, "grid", this.canvasElement.width, this.canvasElement.height);
+    
+    // Move every cell randomly
     const cell_dim = this.grid.getCellDimensions();
     this.grid.getCells().forEach((v, i) => {
       const x = (Math.random() - 0.5) * cell_dim.width;
@@ -115,16 +111,12 @@ export class BackgroundComponent implements AfterViewInit {
 
 
   private onMouseMove(position: Vector2){
-    console.log("Mouse moved!");
-    const maxDist = 50;
     for (let i = 0; i < this.grid.getCellCount(); i++){
       const dist = this.grid.getCell(i).distanceTo(position);
-      if (dist < maxDist){
-        const closeness = 1.0-dist/maxDist;
+      if (dist < this.minDist){
+        const closeness = 1.0-dist/this.minDist;
         this.grid.setCellVelocity(i, this.grid.getCell(i).directionTo(position).multiply(closeness * 100.0));
       }
     }
-    
-    console.log("canv is: ", this.canv);
   }
 }

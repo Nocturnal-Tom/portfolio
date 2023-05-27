@@ -1,27 +1,15 @@
 # Portfolio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.7.
+Here you can find all the project files for my personal portfolio.
+This README will contain links to specific sections of my code if you want to quickly jump to a specific feature that demonstrates
+my own abilities with Javascript/Typesctipt and Angular.
 
-## Development server
+## Canvas
+The background of my portfolio is a canvas with a 2d context. If you'd like to see how I implemented the animation you can go [here](src/app/background).
+To do this I had to create some utilities that you can find [here](src/util/2d/).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Navigation
+I like things being handled automatically, and my navigation bar is a goog example of this. Since I didn't want to have
+to re-type every single link name and it's url every time (since this would be a pain to maintain if any changes were made)
+I have a simple little system in place to automate the generation of links by using the RouterModule.
+I extend the Route interface with my own [RouteInfo](src/app/routing-info.ts) interface. The file also contains some utilities.
