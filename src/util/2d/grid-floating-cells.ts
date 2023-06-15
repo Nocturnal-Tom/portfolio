@@ -7,7 +7,7 @@ export type ConstrainedType = "none" | "cells" | "grid";
 export class GridFloatingCells extends Grid {
     private cellDirection: Array<Vector2>;
     private cellStartPosition: Array<Vector2>;
-    private cellSpeed: number = 0.5;
+    private cellSpeed = 0.5;
     private cellVelocities: Array<Vector2> = [];
     private constrainedDistance = 100;
     private cellDirectionChangeTimer = -1;
@@ -15,7 +15,7 @@ export class GridFloatingCells extends Grid {
     // Not yet implemented
     private constrainedType: ConstrainedType;
 
-    constructor(columns: number, rows: number, dimensionType: DimensionType, width: number, height: number, hSpacing: number = 0, vSpacing: number = 0, constrainedType: ConstrainedType = "grid"){
+    constructor(columns: number, rows: number, dimensionType: DimensionType, width: number, height: number, hSpacing = 0, vSpacing = 0, constrainedType: ConstrainedType = "grid"){
         super(columns, rows, dimensionType, width, height, hSpacing, vSpacing);
         this.cellDirection = Array<Vector2>(this.getCellCount());
         this.cellStartPosition = Vector2.copyVector2Array([...this.getCells()]);

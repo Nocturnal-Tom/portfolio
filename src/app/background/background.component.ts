@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, ViewChild, AfterViewInit, ViewContainerRef, Renderer2 } from '@angular/core';
+import { Component, ElementRef, ViewChild, Renderer2, AfterViewInit } from '@angular/core';
 import { Vector2 } from 'src/util/2d/vector';
 import { GridFloatingCells } from 'src/util/2d/grid-floating-cells';
 import { DrawingContext } from 'src/util/2d/draw';
@@ -9,13 +9,14 @@ import { DrawingContext } from 'src/util/2d/draw';
   templateUrl: './background.component.html',
   styleUrls: ['./background.component.scss']
 })
-export class BackgroundComponent {
+export class BackgroundComponent implements AfterViewInit {
   public shouldDraw = true;
   public shouldDrawCircles = false;
   private lastTime = 0;
   private distanceThresh = 190;
   private cellMaxSpeed = 0.5;
   private minDist = 100;
+  private backgroundWorker: Worker | null = null;
 
   // These properties are set in ngAfterViewInit(), so they are guarenteed to exist (as long as I'm not missing anything?)
   private canvasElement!: HTMLCanvasElement;
@@ -23,9 +24,17 @@ export class BackgroundComponent {
   private drawingCtx!: DrawingContext;
   @ViewChild("backgroundCanvas", {read: ElementRef<HTMLCanvasElement>}) canvasRef!: ElementRef<HTMLCanvasElement>;
 
-  constructor(private element: ElementRef<HTMLElement>, private renderer: Renderer2){}
+  constructor(private element: ElementRef<HTMLElement>, private renderer: Renderer2){
+    if (typeof Worker !== "undefined") {
+      this.backgroundWorker = new Worker(new URL("./background-processing.worker", import.meta.url), {credentials: 'same-origin'})
+    }
+    else {
+      console.log("Can't use worker");
+    }
+  }
 
   ngAfterViewInit(){
+    console.log("backgroundWorker: ", this.backgroundWorker);
     // We want to capture mouse movement to move cells away from mouse if it comes too close
     self.addEventListener("mousemove", (ev: MouseEvent) => this.onMouseMove(new Vector2(ev.clientX, ev.clientY)));
     self.addEventListener("touchmove", (ev: TouchEvent) => this.onMouseMove(new Vector2(ev.touches[0].clientX, ev.touches[0].clientY)));

@@ -1,5 +1,40 @@
+@use "/src/variables.scss" as vars;
+
+:host {
+    grid-column: 1;
+    grid-row: 2 / 3;
+    align-items: center;
+}
+
+
 #navbar-item-container {
     display: inline-grid;
     position: sticky;
-    top: 0;
+    top: 0em;
+    row-gap: 10px;
+}
+
+
+@media (max-aspect-ratio: 1/1){
+    :host{
+        display: grid;
+        grid-column: 1;
+        grid-row: 2;
+        position: sticky;
+        top: -1px;
+        z-index: 1;
+    }
+
+    #navbar-item-container {
+        align-items: center;
+        grid-template-rows: auto;
+        grid-template-columns: auto auto auto auto auto;
+        position: initial;
+        top: 0;
+    }
+
+    .sticky-background {
+        background-color: rgba(10, 10, 10, 0.95);
+        border-radius: 0 0 1em 1em;
+    }
 }

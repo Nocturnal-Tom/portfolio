@@ -1,4 +1,3 @@
-import { By } from "@angular/platform-browser";
 import { Vector2 } from "./vector";
 
 export type DimensionType = "cell" | "grid";

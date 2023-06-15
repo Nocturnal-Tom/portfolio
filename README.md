@@ -13,3 +13,4 @@ I like things being handled automatically, and my navigation bar is a goog examp
 to re-type every single link name and it's url every time (since this would be a pain to maintain if any changes were made)
 I have a simple little system in place to automate the generation of links by using the RouterModule.
 I extend the Route interface with my own [RouteInfo](src/app/routing-info.ts) interface. The file also contains some utilities.
+You can find the navigation bar implementation [here](src/app/navbar/).

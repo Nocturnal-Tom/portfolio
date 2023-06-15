@@ -1,29 +1,29 @@
-$background-color: #1f1f1f;
-$text-color: #ffffff;
-$button-background-color: #3c3c3c;
-
-$accent-color-1: #ff6347;
-$accent-color-2: #6edbd2;
+@use "/src/variables.scss" as vars;
 
 
 /* You can add global styles to this file, and also import other style files */
 html, body, #mainPage {
     background-color: transparent;
-    color: $text-color;
+    color: vars.$text-color;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     padding: 0;
     margin: 0;
 }
 
 
+@mixin font-diphylleia {
+    font-family: 'Diphylleia', serif;
+}
+
 * {
-    color: $text-color;
+    color: vars.$text-color;
     background-color: transparent;
+    @include font-diphylleia;
 }
 
 a:any-link {
-    color: $accent-color-1;
+    color: vars.$accent-color-1;
 }
 
 
@@ -39,4 +39,35 @@ button {
         border-color: rgb(51, 51, 51);
         box-shadow: 2px 2px 4px rgba(1, 1, 1, 0.5);
     }
+}
+
+
+.content-box {
+    background-color: rgba(10, 10, 10, 0.9);
+    padding: 1em;
+    @include vars.backdrop-blur;
+}
+
+.grid-2-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3em;
+}
+
+
+.bold {
+    font-weight: bold;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    * {
+        font-size: 15px !important;
+    }
+
+    .grid-2-column {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        row-gap: 1em;
+    }
+    
 }

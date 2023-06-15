@@ -1,0 +1,71 @@
+@use "/src/variables.scss" as var;
+
+
+#contact-form {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+
+    
+    & *:nth-child(even) {
+        margin-bottom: 1em;
+    }
+}
+
+#email-clipboard {
+    outline: none;
+    border: none;
+    color: #AAAAAA; // #4444FF;
+    cursor: alias;
+    text-decoration: underline;
+}
+
+#floating-email-clipboard-text {
+    position: fixed;
+    margin-left: -12em;
+    margin-top: -2em;
+    opacity: 0;
+    background-color: var.$button-background-color;
+    border-radius: 0.2em;
+    padding: 0.2em 0.1em 0.2em 0.1em;
+    animation: floating-email-clipboard-text-anim 2s;
+    animation-fill-mode: forwards; // Prevents animation from being detatched after it finshes
+    user-select: none;
+}
+
+
+#contact-email:invalid {
+    outline: #FF0000;
+    background-color: #FF000055;
+    outline-width: 1px;
+    outline-style: solid;
+}
+
+.conatact-email-disabled{
+    background-color: transparent !important;
+    outline-width: 0px !important;
+}
+
+
+#contact-submit {
+    max-width: 20em;
+    margin-right: 0;
+    margin-left: auto;
+}
+
+
+
+@keyframes floating-email-clipboard-text-anim {
+    0% {
+        opacity: 0%;
+    }
+    10% {
+        opacity: 100%;
+    }
+    90% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+    }
+}

@@ -1,0 +1,80 @@
+@use "/src/variables.scss" as vars;
+
+.python-first-span {
+    color: vars.$python-color-1;
+}
+
+.python-second-span {
+    color: vars.$python-color-2;
+}
+
+.javascript-span {
+    color: vars.$javascript-color;
+}
+
+.c-sharp-first-span {
+    color: vars.$c-sharp-color-1;
+}
+
+.c-sharp-second-span {
+    color: vars.$c-sharp-color-2;
+}
+
+.cpp-first-span {
+    color: vars.$cpp-color-1;
+}
+
+.cpp-second-span {
+    color: vars.$cpp-color-2;
+}
+
+.angular-first-span {
+    color: vars.$angular-color-1;
+}
+
+.angular-second-span {
+    color: vars.$angular-color-2;
+}
+
+.blazor-span {
+    color: vars.$blazor-color;
+}
+
+.dotnet-span {
+    color: vars.$dotnet-color-1;
+}
+
+/*
+.python-first-span,
+.python-second-span,
+.javascript-span,
+.c-sharp-first-span,
+.c-sharp-second-span,
+.cpp-first-span,
+.cpp-second-span,
+.angular-first-span,
+.angular-second-span,
+.blazor-span,
+.dotnet-span
+*/
+
+span {
+    background-color: rgba(10, 10, 10, 1.0);
+}
+
+
+.inner-box {
+    background-color: #2020203d;
+}
+
+
+* {
+    text-align: justify;
+    // Gives a nice space at the start of a paragraph, but must be careful when editing the text
+    white-space: pre-wrap;
+}
+
+
+p::first-letter{
+    font-size: 1.5em;
+}

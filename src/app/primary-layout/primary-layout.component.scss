@@ -1,0 +1,29 @@
+@use "/src/variables.scss" as vars;
+
+:host {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+    grid-template-rows: 5em auto;
+    padding: 1em 5em 1em 1em;
+}
+
+#primary-content-container {
+    //background: linear-gradient(rgba(vars.$background-color, 0.5), rgba(vars.$background-color, 0.25), 90% ,rgba(vars.$background-color, 0.0) 95%);
+    //box-shadow:  0 0 1em 1em rgba(vars.$background-color, 0.9);
+    grid-column: 2 / 3;
+    padding: 3em;
+}
+
+@media (max-aspect-ratio: 1/1){
+    :host{
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr 20fr;
+        padding: 1em;
+    }
+
+    #primary-content-container {
+        grid-column: 1;
+        padding: 1em;
+    }
+}

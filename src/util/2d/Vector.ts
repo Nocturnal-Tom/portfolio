@@ -113,10 +113,10 @@ export class Vector2 {
         return this.copy().normalized().multiply(maxMag);
     }
     
-    rotated(rads: number): Vector2 {
+    rotated(theta: number): Vector2 {
         const vec = this.copy();
-        vec.x = Math.cos(vec.x) - Math.sin(vec.y);
-        vec.y = Math.sin(vec.x) + Math.cos(vec.y);
+        vec.x = Math.cos(theta)*vec.x - Math.sin(theta)*vec.y;
+        vec.y = Math.sin(theta)*vec.x + Math.cos(theta)*vec.y;
         return vec;
     }
     

@@ -1,0 +1,28 @@
+@use "src/variables.scss" as var;
+@use "src/styles.scss";
+#home-title {
+    text-align: center;
+}
+
+#self-drive {
+    color: var.$accent-color-1;
+    text-decoration: underline;
+}
+
+#passionate {
+    color: var.$accent-color-2;
+    text-decoration: underline;
+}
+
+#about-me-short {
+    padding: 1em;
+    width: 50%;
+}
+
+h3 {
+    text-decoration: underline;
+}
+
+p {
+    font-size: 120%;
+}

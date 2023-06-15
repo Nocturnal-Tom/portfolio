@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-about',
@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
+  protected languages = [
+    "C",
+    "C++",
+    "Javascript",
+    "Typescript",
+    "Python",
+  ]
 
+  protected languageFrameworks = new Map([
+    ["Typescript", ["Angular"]]  
+  ])
 }

@@ -4,9 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-project-portfolio',
   templateUrl: './project-portfolio.component.html',
   styleUrls: ['./project-portfolio.component.scss'],
-  host: {
-    class: "project-portfolio"
-  }
 })
 export class ProjectPortfolioComponent {
 
