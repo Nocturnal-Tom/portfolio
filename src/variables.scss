@@ -3,14 +3,28 @@
 
 $text-color: #fff;
 
-$background-color-1: #0a0a0ae6;
+$background-color: #0a0a0ae6;
 $accent-color-1: #ff6347;
 $accent-color-2: #6edbd2;
 $python-color-1: #111;
 $python-color-2: #111;
 $button-background-color: #111;
 $javascript-color: #111;
+$c-sharp-color-1: #111;
+$c-sharp-color-2: #111;
+$cpp-color-1: #111;
+$cpp-color-2: #111;
+$angular-color-1: #111;
+$angular-color-2: #111;
+$blazor-color: #111;
+$dotnet-color-1: #111;
+$dotnet-color-2: #111;
 
 @mixin backdrop-blur{
-
+    backdrop-filter: blur(2px);
+}
+@mixin underline($thickness){
+    padding-bottom: $thickness;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
 }
