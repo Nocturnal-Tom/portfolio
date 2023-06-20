@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, Renderer2, AfterViewInit } from '@angular/core';
-import { Vector2 } from 'src/util/2d/vector';
+import { Vector2 } from 'src/util/2d/Vector';
 import { GridFloatingCells } from 'src/util/2d/grid-floating-cells';
 import { DrawingContext } from 'src/util/2d/draw';
 
