@@ -11,7 +11,7 @@ export class DrawingContext {
         this.canvas = canvas;
         const tmp_ctx = this.canvas.getContext("2d");
         if (!tmp_ctx) {
-            throw new Error("Canvas does not have 2d rendering context");
+            throw new Error("Canvas does not have 2d rendering context!");
         }
 
         this.ctx = tmp_ctx;

@@ -15,6 +15,11 @@ import { PrimaryLayoutComponent } from './primary-layout/primary-layout.componen
 import { BackgroundComponent } from './background/background.component';
 import { TitlebarComponent } from './titlebar/titlebar.component';
 import { BlogComponent } from './main-pages/blog/blog.component';
+import { HomeTitlebarComponent } from './services/home-titlebar/home-titlebar.component';
+import { AboutTitlebarComponent } from './services/about-titlebar/about-titlebar.component';
+import { ContactTitlebarComponent } from './services/contact-titlebar/contact-titlebar.component';
+import { ProjectsTitlebarComponent } from './services/projects-titlebar/projects-titlebar.component';
+import { BlogTitlebarComponent } from './services/blog-titlebar/blog-titlebar.component';
 
 
 @NgModule({
@@ -30,7 +35,12 @@ import { BlogComponent } from './main-pages/blog/blog.component';
     PrimaryLayoutComponent,
     BackgroundComponent,
     TitlebarComponent,
-    BlogComponent
+    BlogComponent,
+    HomeTitlebarComponent,
+    AboutTitlebarComponent,
+    ContactTitlebarComponent,
+    ProjectsTitlebarComponent,
+    BlogTitlebarComponent
   ],
   imports: [
     BrowserModule,

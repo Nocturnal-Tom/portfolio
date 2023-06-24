@@ -25,6 +25,7 @@ $dotnet-color-2: #111;
 }
 @mixin underline($thickness){
     padding-bottom: $thickness;
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
+    border: $accent-color-1;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
 }

@@ -1,16 +1,16 @@
 import { Route, Routes } from "@angular/router";
 
 
-type RouteType = "Main Page" | "Project" | "Layout" | "Other";
+type RouteType = "Main Page" | "Project" | "Layout" | "Titlebar" | "Other";
 type RouteInfos = RouteInfo[];
 
 
 // The entire purpose of this interface is to allow us to determine what name to give links that route to different components
 export interface RouteInfo extends Route {
-    pathName: string;   // The text in <a> (or component) should be this string
+    pathName?: string;   // The text in <a> (or component) should be this string
     routeType: RouteType;    // Used when generating components, some components only interested in Main Pages, or Project etc...
     path: string;   // forces the path property of Route to be mandatory since it must be present for RouteInfo
-    children: Array<RouteInfo> | Array<Route>;   // Helps a lot with the autocomplete & checking validity
+    children?: Array<RouteInfo> | Array<Route>;   // Helps a lot with the autocomplete & checking validity
 }
 
 
