@@ -15,6 +15,8 @@ import { PrimaryLayoutComponent } from './primary-layout/primary-layout.componen
 import { BackgroundComponent } from './background/background.component';
 import { TitlebarComponent } from './titlebar/titlebar.component';
 import { BlogComponent } from './main-pages/blog/blog.component';
+
+// Titlebar components
 import { HomeTitlebarComponent } from './services/home-titlebar/home-titlebar.component';
 import { AboutTitlebarComponent } from './services/about-titlebar/about-titlebar.component';
 import { ContactTitlebarComponent } from './services/contact-titlebar/contact-titlebar.component';
@@ -36,6 +38,7 @@ import { BlogTitlebarComponent } from './services/blog-titlebar/blog-titlebar.co
     BackgroundComponent,
     TitlebarComponent,
     BlogComponent,
+
     HomeTitlebarComponent,
     AboutTitlebarComponent,
     ContactTitlebarComponent,

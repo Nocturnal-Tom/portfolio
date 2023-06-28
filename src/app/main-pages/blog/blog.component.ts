@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class BlogComponent {
 
+  constructor(){
+    fetch("http://tmwr.co.uk/api/blogs")
+    .then((res: Response) => res.json())
+    .then((data) => this.onBlogsFetched(data));
+  }
+
+
+  onBlogsFetched(blogs: Object){
+    console.log(Object.entries(blogs));
+  }
 }

@@ -77,36 +77,6 @@ const routes: Array<RouteInfo> = [
         routeType: "Main Page"
       }
     ] as Array<RouteInfo>},
-    {
-      path: "home",
-      routeType: 'Titlebar',
-      component: HomeTitlebarComponent,
-      outlet: "titlebar-outlet"
-    },
-    {
-      path: "about",
-      routeType: 'Titlebar',
-      component: AboutTitlebarComponent,
-      outlet: "titlebar-outlet"
-    },
-    {
-      path: "blog",
-      routeType: 'Titlebar',
-      component: BlogTitlebarComponent,
-      outlet: "titlebar-outlet"
-    },
-    {
-      path: "projects",
-      routeType: 'Titlebar',
-      component: ProjectsTitlebarComponent,
-      outlet: "titlebar-outlet"
-    },
-    {
-      path: "contact",
-      routeType: 'Titlebar',
-      component: ContactTitlebarComponent,
-      outlet: "titlebar-outlet"
-    }
 ];
 
 
