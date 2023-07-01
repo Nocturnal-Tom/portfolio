@@ -8,27 +8,6 @@ import { ProjectsComponent } from "./main-pages/projects/projects.component";
 import { ProjectPortfolioComponent } from './main-pages/projects/project-portfolio/project-portfolio.component';
 import { PrimaryLayoutComponent } from './primary-layout/primary-layout.component';
 import { BlogComponent } from './main-pages/blog/blog.component';
-import { Route } from '@angular/router';
-import { AboutTitlebarComponent } from './services/about-titlebar/about-titlebar.component';
-import { HomeTitlebarComponent } from './services/home-titlebar/home-titlebar.component';
-import { BlogTitlebarComponent } from './services/blog-titlebar/blog-titlebar.component';
-import { ProjectsTitlebarComponent } from './services/projects-titlebar/projects-titlebar.component';
-import { ContactTitlebarComponent } from './services/contact-titlebar/contact-titlebar.component';
-
-// // AboutTitleComponent
-// const otherRoutes: Array<Route> = [
-//   {
-//     path: "about-title",
-//     component: AboutTitleComponent,
-//     outlet: "titlebar-outlet"
-//   },
-//   {
-//     path: "home-title",
-//     component: AboutTitleComponent,
-//     outlet: "titlebar-outlet"
-//   }
-// ]
-
 
 const routes: Array<RouteInfo> = [
   {

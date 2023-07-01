@@ -3,9 +3,9 @@ import { TitlebarService } from '../services/titlebar.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { AboutTitlebarComponent } from '../services/about-titlebar/about-titlebar.component';
+import { AboutTitlebarComponent } from '../main-pages/about/about-titlebar/about-titlebar.component';
 import { Type, AfterViewInit } from '@angular/core';
-import { HomeTitlebarComponent } from '../services/home-titlebar/home-titlebar.component';
+import { HomeTitlebarComponent } from '../main-pages/home/home-titlebar/home-titlebar.component';
 
 @Component({
   selector: 'app-titlebar',

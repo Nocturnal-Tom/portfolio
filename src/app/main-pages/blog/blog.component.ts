@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
 
+
+export interface BlogData{
+  title: string,
+  description: string,
+  content: string
+}
+
+
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',

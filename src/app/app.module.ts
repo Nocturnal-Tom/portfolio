@@ -17,11 +17,11 @@ import { TitlebarComponent } from './titlebar/titlebar.component';
 import { BlogComponent } from './main-pages/blog/blog.component';
 
 // Titlebar components
-import { HomeTitlebarComponent } from './services/home-titlebar/home-titlebar.component';
-import { AboutTitlebarComponent } from './services/about-titlebar/about-titlebar.component';
+import { HomeTitlebarComponent } from './main-pages/home/home-titlebar/home-titlebar.component';
+import { AboutTitlebarComponent } from './main-pages/about/about-titlebar/about-titlebar.component';
 import { ContactTitlebarComponent } from './services/contact-titlebar/contact-titlebar.component';
-import { ProjectsTitlebarComponent } from './services/projects-titlebar/projects-titlebar.component';
-import { BlogTitlebarComponent } from './services/blog-titlebar/blog-titlebar.component';
+import { ProjectsTitlebarComponent } from './main-pages/projects/projects-titlebar/projects-titlebar.component';
+import { BlogTitlebarComponent } from './main-pages/blog/blog-titlebar/blog-titlebar.component';
 
 
 @NgModule({

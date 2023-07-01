@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AboutTitlebarComponent } from './about-titlebar/about-titlebar.component';
-import { HomeTitlebarComponent } from './home-titlebar/home-titlebar.component';
-import { ProjectsTitlebarComponent } from './projects-titlebar/projects-titlebar.component';
-import { BlogTitlebarComponent } from './blog-titlebar/blog-titlebar.component';
-import { ContactTitlebarComponent } from './contact-titlebar/contact-titlebar.component';
+import { AboutTitlebarComponent } from '../main-pages/about/about-titlebar/about-titlebar.component';
+import { HomeTitlebarComponent } from '../main-pages/home/home-titlebar/home-titlebar.component';
+import { ProjectsTitlebarComponent } from '../main-pages/projects/projects-titlebar/projects-titlebar.component';
+import { BlogTitlebarComponent } from '../main-pages/blog/blog-titlebar/blog-titlebar.component';
+import { ContactTitlebarComponent } from '../main-pages/contact/contact-titlebar/contact-titlebar.component';
 
 export interface TitlebarRoute{
     name: string,
