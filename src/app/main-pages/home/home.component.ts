@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  protected languages = [
+    "C",
+    "C++",
+    "Javascript",
+    "Typescript",
+    "Python",
+  ]
 
+  protected languageFrameworks = new Map([
+    ["Typescript", ["Angular"]]  
+  ])
 }

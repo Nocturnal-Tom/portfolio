@@ -27,3 +27,13 @@
         padding: 1em;
     }
 }
+
+app-titlebar {
+    grid-column: 1/-1;
+    @media (orientation: landscape) {
+        padding: 0 10em 0 10em;
+    }
+    @media (orientation: portrait){
+        text-align: center;
+    }
+}

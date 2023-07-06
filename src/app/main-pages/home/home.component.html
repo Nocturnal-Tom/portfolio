@@ -1,5 +1,66 @@
-<div class="content-box" id="about-me-short">
-    <h3> Welcome! </h3>
-    <p> Here you can view some of my projects and view my blogs/vlogs. </p>
-    <p> I'm currently looking for a job, if you like my work and think I'm a good fit for your team, <a routerLink="contact">contact me</a> </p>
+<div class="grid-2-column">
+    <div class="content-box">
+        <h3> Welcome! </h3>
+        <p> Here you can view some of my projects and view my blogs/vlogs. </p>
+        <p> I'm currently looking for a job, if you like my work and think I'm a good fit for your team, <a routerLink="contact">contact me</a> </p>
+    </div>
+
+    <div class="content-box">
+        <h3> Who am I? </h3>
+        <p> I'm a software developer who focus on full-stack development. </p>
+        <p> You can check out my work in the <a routerLink="projects"> Projects </a> section. </p>
+        <p> I also write about various software development related subjects in my <a routerLink="blog"> blog</a>.</p>
+    </div>
+
+    <div class="content-box">
+        <h3> About me </h3>
+        <h4 class="underline">Introduction</h4>
+        <p>
+            Hi, I'm Tommy, a Software Dev from Wales! I've many interests, Linguistics, Photography, Electrical Engineering just to name a few.
+        </p>
+        <p>
+            The first language I learned was
+            <span class="cpp-first-span">C</span>
+            <span class="cpp-second-span">++</span>
+            , starting when I was about 16. I had heard it was hard and wasn't at all a good starting point for someone interested in learning to program.
+            I took that as a challenge, unfortunately. It took me several years to really get a good grasp on it.
+        </p>
+        <p>
+            The first language I learned was
+            I then learned some other languages like
+            <span class="python-first-span">Pyt</span>
+            <span class="python-second-span">hon</span>
+            and
+            <span class="javascript-span">Javascript</span>
+            , and when I wanted to make games I learned
+            <span class="c-sharp-first-span">C</span>
+            <span class="c-sharp-second-span">#</span>
+            for Unity.
+            In 2023 I commited myself to learning web development, initially starting with
+            <span class= "dotnet-span">.NET</span>
+            and
+            <span class="blazor-span">Blazor</span>
+            since I had some experience with
+            <span class="c-sharp-first-span">C</span>
+            <span class="c-sharp-second-span">#</span>
+            , however I ended up focusing on
+            <span class="angular-first-span">Ang</span>
+            <span class="angular-second-span">ular</span>
+            as it seemed more straight forward to get into.
+        </p>
+    </div>
+    <div class="content-box">
+        <h3> My skills </h3>
+        <h4 class="underline"> Languages </h4>
+        <ul>
+            <li *ngFor="let lang of languages">
+                {{ lang }}
+                <ul *ngIf="languageFrameworks.has(lang)">
+                    <li *ngFor="let framework of languageFrameworks.get(lang)">
+                        {{framework}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </div>

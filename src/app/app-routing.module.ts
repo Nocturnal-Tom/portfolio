@@ -27,7 +27,8 @@ const routes: Array<RouteInfo> = [
         pathName: "About Me",
         path: "about",
         component: AboutComponent,
-        routeType: "Main Page"
+        routeType: "Main Page",
+        deactivated: true
       },
       {
         pathName: "My Projects",

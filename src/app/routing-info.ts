@@ -11,6 +11,7 @@ export interface RouteInfo extends Route {
     routeType: RouteType;    // Used when generating components, some components only interested in Main Pages, or Project etc...
     path: string;   // forces the path property of Route to be mandatory since it must be present for RouteInfo
     children?: Array<RouteInfo> | Array<Route>;   // Helps a lot with the autocomplete & checking validity
+    deactivated?: boolean; // Sometimes we may want to deprecate a page, this will make it painless
 }
 
 

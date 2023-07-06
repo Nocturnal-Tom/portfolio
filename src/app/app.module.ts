@@ -19,9 +19,10 @@ import { BlogComponent } from './main-pages/blog/blog.component';
 // Titlebar components
 import { HomeTitlebarComponent } from './main-pages/home/home-titlebar/home-titlebar.component';
 import { AboutTitlebarComponent } from './main-pages/about/about-titlebar/about-titlebar.component';
-import { ContactTitlebarComponent } from './services/contact-titlebar/contact-titlebar.component';
+import { ContactTitlebarComponent } from './main-pages/contact/contact-titlebar/contact-titlebar.component';
 import { ProjectsTitlebarComponent } from './main-pages/projects/projects-titlebar/projects-titlebar.component';
 import { BlogTitlebarComponent } from './main-pages/blog/blog-titlebar/blog-titlebar.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { BlogTitlebarComponent } from './main-pages/blog/blog-titlebar/blog-titl
     BackgroundComponent,
     TitlebarComponent,
     BlogComponent,
-
+    
     HomeTitlebarComponent,
     AboutTitlebarComponent,
     ContactTitlebarComponent,
@@ -52,7 +53,9 @@ import { BlogTitlebarComponent } from './main-pages/blog/blog-titlebar/blog-titl
   exports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    RouterTestingModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

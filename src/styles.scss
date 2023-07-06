@@ -43,15 +43,23 @@ button {
 
 
 .content-box {
-    background-color: rgba(10, 10, 10, 0.9);
+    background-color: rgba(10, 10, 10, 0.95);
     padding: 1em;
     @include vars.backdrop-blur;
 }
+
+
 
 .grid-2-column {
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 3em;
+    row-gap: 3em;
+}
+
+.content-box-wide {
+    @extend .content-box;
+    grid-column: 1/3;
 }
 
 

@@ -23,9 +23,11 @@ $dotnet-color-2: #111;
 @mixin backdrop-blur{
     backdrop-filter: blur(2px);
 }
+
 @mixin underline($thickness){
     padding-bottom: $thickness;
     border: $accent-color-1;
     border-bottom-width: 1px;
     border-bottom-style: solid;
 }
+

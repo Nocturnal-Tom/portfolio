@@ -14,15 +14,75 @@
     text-decoration: underline;
 }
 
-#about-me-short {
-    padding: 1em;
-    width: 50%;
-}
-
 h3 {
     text-decoration: underline;
 }
 
 p {
     font-size: 120%;
+}
+
+.python-first-span {
+    color: var.$python-color-1;
+}
+
+.python-second-span {
+    color: var.$python-color-2;
+}
+
+.javascript-span {
+    color: var.$javascript-color;
+}
+
+.c-sharp-first-span {
+    color: var.$c-sharp-color-1;
+}
+
+.c-sharp-second-span {
+    color: var.$c-sharp-color-2;
+}
+
+.cpp-first-span {
+    color: var.$cpp-color-1;
+}
+
+.cpp-second-span {
+    color: var.$cpp-color-2;
+}
+
+.angular-first-span {
+    color: var.$angular-color-1;
+}
+
+.angular-second-span {
+    color: var.$angular-color-2;
+}
+
+.blazor-span {
+    color: var.$blazor-color;
+}
+
+.dotnet-span {
+    color: var.$dotnet-color-1;
+}
+
+span {
+    background-color: rgba(10, 10, 10, 1.0);
+}
+
+
+.inner-box {
+    background-color: #2020203d;
+}
+
+
+* {
+    text-align: justify;
+    // Gives a nice space at the start of a paragraph, but must be careful when editing the text
+    white-space: pre-wrap;
+}
+
+
+p::first-letter{
+    font-size: 1.5em;
 }
