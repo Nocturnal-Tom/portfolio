@@ -1,22 +1,26 @@
 <div class="content-box">
     <h3> Contact </h3>
     If you would like to hire me (or just reach out) you can email me at
-        <span>
+    <!--
+        <span style="text-decoration: underline;">
             <button id="email-clipboard" (click)="emailToClipboard()">
-                tommyread9608@gmail.com
+                tommyreade9608@gmail.com
             </button>
             <span #email_copy id="floating-email-clipboard-text" >Copied to Clipboard!</span>
         </span>
+    -->
     
+    <a href="mailto:tommyreade9608@gmail.com">tommyreade9608@gmail.com</a>
     <br><br>Or you can fill out the form below.
     <br><br>
-    <form id="contact-form" action="/contact-form">
+    <form id="contact-form" action="/contact-form" [formGroup]="contactFormGroup">
         <label for="contact-name">Name:</label>
-        <input #contactName id="contact-name">
+        <input #contactName id="contact-name" formControlName="name">
         <label for="contact-email">Email:</label>
-        <input #contactEmail id="contact-email" type="email" autocomplete="email" placeholder="* Email" required (focus)="enable_email_validation_style()">
+        <!-- <input #contactEmail id="contact-email" formControlName="email" type="email" autocomplete="email" required placeholder="* Email"(focus)="enable_email_validation_style()"> -->
+        <input #contactEmail id="contact-email" formControlName="email" type="email" autocomplete="email" placeholder="* Email" required (focus)="enable_email_validation_style()">
         <label for="contact-message">Message:</label>
-        <textarea type="text" id="contact-message" rows="6"></textarea>
-        <button id="contact-submit" type="submit"> Send </button>
+        <textarea type="text" id="contact-message" rows="6" formControlName="message"></textarea>
+        <button #contactFormSubmit id="contact-submit" type="submit"> Send </button>
     </form>
 </div>

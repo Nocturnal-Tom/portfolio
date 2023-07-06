@@ -1,5 +1,5 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-
+import { Component, ElementRef, ViewChild, AfterViewInit, ViewContainerRef } from '@angular/core';
+import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 /*
   I am really ashamed as to how I implemented the floating element notification.
   However it works and is simple, hopefully I will find a better way in the future.
@@ -18,13 +18,35 @@ export class ContactComponent implements AfterViewInit {
   @ViewChild("contactEmail", {read: ElementRef})
   private email_field!: ElementRef<HTMLInputElement>;
 
+  @ViewChild("contactFormSubmit", {read: ElementRef<HTMLButtonElement>})
+  private contactFormSubmit!: ElementRef<HTMLButtonElement>;
+
+  protected contactFormGroup = this.fb.group({
+    name: ["", Validators.required],
+    email: ["", [Validators.email, Validators.required]],
+    message: [""]
+  })
+
+  constructor(private fb: FormBuilder){ }
+
   ngAfterViewInit(){
+    console.log(this.contactFormSubmit.nativeElement.addEventListener("click", (ev) => {
+      const formStr = JSON.stringify(this.contactFormGroup.value);
+      fetch("http://tmwr.co.uk/api/contactForm", {
+        body: formStr,
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain"
+        }
+      });
+    }));
+    
     // We need to "finish" the animation at the start because it's simpler than adding it and checking if it's already added every time
-    let el = this.email_copy.nativeElement;
-    let el_anims = el.getAnimations();
-    if (el_anims.length > 0){
-      el_anims[0].finish();
-    }
+    //let el = this.email_copy.nativeElement;
+    //let el_anims = el.getAnimations();
+    //if (el_anims.length > 0){
+    //  el_anims[0].finish();
+    //}
 
     // We don't want this style to be active at the start, so we disable it for now.
     let ef = this.email_field.nativeElement;
@@ -32,7 +54,7 @@ export class ContactComponent implements AfterViewInit {
   }
 
   emailToClipboard(){
-    navigator.clipboard.writeText("tommyreade9608@gmail.com");
+    //navigator.clipboard.writeText("tommyreade9608@gmail.com");
     this.play_animation();
   }
 
