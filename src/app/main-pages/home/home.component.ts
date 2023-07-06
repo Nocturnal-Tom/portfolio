@@ -9,12 +9,21 @@ export class HomeComponent {
   protected languages = [
     "C",
     "C++",
+    "C#",
     "Javascript",
     "Typescript",
+    "SQL",
     "Python",
+    "Bash"
   ]
 
-  protected languageFrameworks = new Map([
-    ["Typescript", ["Angular"]]  
-  ])
+  protected software = [
+    "Angular",
+    "NodeJS",
+    "ExpressJS",
+    "Nginx",
+    "PostgreSQL",
+    "Linux",
+    "Git"
+  ]
 }

@@ -52,14 +52,16 @@
     <div class="content-box">
         <h3> My skills </h3>
         <h4 class="underline"> Languages </h4>
-        <ul>
+        <ul id="language-list">
             <li *ngFor="let lang of languages">
                 {{ lang }}
-                <ul *ngIf="languageFrameworks.has(lang)">
-                    <li *ngFor="let framework of languageFrameworks.get(lang)">
-                        {{framework}}
-                    </li>
-                </ul>
+            </li>
+            
+        </ul>
+        <h4> Software & Frameworks </h4>
+        <ul id="software-list">
+            <li *ngFor="let sw of software">
+                {{sw}}
             </li>
         </ul>
     </div>

@@ -69,7 +69,7 @@ button {
 
 @media (max-aspect-ratio: 1/1) {
     * {
-        font-size: 15px !important;
+        font-size: 15px;
     }
 
     .grid-2-column {
@@ -78,4 +78,8 @@ button {
         row-gap: 1em;
     }
     
+}
+
+.titlebar {
+    text-decoration: underline;
 }
